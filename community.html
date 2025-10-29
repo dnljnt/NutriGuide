@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community - NutriGuide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#619FA3',
+                        'primary-light': '#8AB5B8',
+                        'primary-dark': '#4A8A8E',
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-in-out',
+                        'slide-up': 'slideUp 0.6s ease-out',
+                        'pulse-soft': 'pulseSoft 2s infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                        pulseSoft: {
+                            '0%, 100%': { transform: 'scale(1)' },
+                            '50%': { transform: 'scale(1.05)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .neumorphic {
+            box-shadow: 20px 20px 60px #d1d1d1, -20px -20px 60px #ffffff;
+        }
+        .neumorphic-inset {
+            box-shadow: inset 20px 20px 60px #d1d1d1, inset -20px -20px 60px #ffffff;
+        }
+        .gradient-primary {
+            background: linear-gradient(135deg, #619FA3 0%, #8AB5B8 100%);
+        }
+    </style>
+</head>
+<body class="bg-white font-sans">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/90 backdrop-blur-md z-50 shadow-sm">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+                        <span class="text-white font-bold text-sm">N</span>
+                    </div>
+                    <span class="font-semibold text-lg text-gray-800">NutriGuide</span>
+                </div>
+                <button onclick="window.location.href='index.html'" class="text-gray-600 hover:text-primary transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="min-h-screen pt-20 px-4">
+        <div class="container mx-auto max-w-7xl py-12">
+            <!-- Title -->
+            <div class="text-center mb-12">
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Learn from the Best</h1>
+                <p class="text-xl text-gray-600">Connect with fitness experts and join our supportive community</p>
+            </div>
+
+            <!-- Challenge Banner -->
+            <div class="neumorphic bg-gradient-to-r from-yellow-400 to-orange-400 rounded-3xl p-8 mb-12 text-white">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="mb-4 md:mb-0">
+                        <h2 class="text-3xl font-bold mb-2">7-Day Sugar-Free Challenge</h2>
+                        <p class="text-xl text-white/90">Join 2,847 members transforming their health</p>
+                    </div>
+                    <div class="flex space-x-4">
+                        <button class="bg-white text-orange-500 px-8 py-3 rounded-xl font-semibold hover:bg-gray-100 transition-colors">
+                            Join Challenge
+                        </button>
+                        <button class="bg-white/20 backdrop-blur-sm text-white px-8 py-3 rounded-xl font-semibold hover:bg-white/30 transition-colors">
+                            Learn More
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Influencers Section -->
+            <div class="mb-16">
+                <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Featured Influencers</h2>
+                <div id="influencersContainer" class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Influencers will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Community Posts -->
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Main Feed -->
+                <div class="lg:col-span-2">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Community Success Stories</h2>
+                    
+                    <!-- Post 1 -->
+                    <div class="neumorphic bg-white rounded-2xl p-6 mb-6">
+                        <div class="flex items-start space-x-4 mb-4">
+                            <img src="https://picsum.photos/seed/user1/60/60.jpg" alt="User" class="w-12 h-12 rounded-full">
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between">
+                                    <h4 class="font-semibold text-gray-800">Andi K.</h4>
+                                    <span class="text-sm text-gray-500">2 hours ago</span>
+                                </div>
+                                <p class="text-sm text-gray-600">Lost 3kg with the cutting plan!</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-700 mb-4">Just completed my first month on the cutting plan and I'm down 3kg! The meal plans are amazing and I never feel deprived. Thank you NutriGuide! 🎉</p>
+                        <img src="https://picsum.photos/seed/progress1/600/400.jpg" alt="Progress" class="w-full rounded-xl mb-4">
+                        <div class="flex items-center justify-between">
+                            <div class="flex space-x-4">
+                                <button class="flex items-center space-x-2 text-gray-600 hover:text-primary transition-colors">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                    </svg>
+                                    <span>234</span>
+                                </button>
+                                <button class="flex items-center space-x-2 text-gray-600 hover:text-primary transition-colors">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                                    </svg>
+                                    <span>45</span>
+                                </button>
+                            </div>
+                            <button class="text-gray-600 hover:text-primary transition-colors">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m9.032 4.026a9.001 9.001 0 01-7.432 0m9.032-4.026A9.001 9.001 0 0112 3c-4.474 0-8.268 3.12-9.032 7.326m0 0A9.001 9.001 0 0012 21c4.474 0 8.268-3.12 9.032-7.326"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Post 2 -->
+                    <div class="neumorphic bg-white rounded-2xl p-6 mb-6">
+                        <div class="flex items-start space-x-4 mb-4">
+                            <img src="https://picsum.photos/seed/user2/60/60.jpg" alt="User" class="w-12 h-12 rounded-full">
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between">
+                                    <h4 class="font-semibold text-gray-800">Maya S.</h4>
+                                    <span class="text-sm text-gray-500">5 hours ago</span>
+                                </div>
+                                <p class="text-sm text-gray-600">Meal prep Sunday success!</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-700 mb-4">Prepped my meals for the week using the NutriGuide recipes. So excited to stay on track! Who else does meal prep? 🥗</p>
+                        <div class="grid grid-cols-2 gap-2 mb-4">
+                            <img src="https://picsum.photos/seed/meal1/300/300.jpg" alt="Meal" class="w-full rounded-lg">
+                            <img src="https://picsum.photos/seed/meal2/300/300.jpg" alt="Meal" class="w-full rounded-lg">
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div class="flex space-x-4">
+                                <button class="flex items-center space-x-2 text-gray-600 hover:text-primary transition-colors">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                    </svg>
+                                    <span>156</span>
+                                </button>
+                                <button class="flex items-center space-x-2 text-gray-600 hover:text-primary transition-colors">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                                    </svg>
+                                    <span>23</span>
+                                </button>
+                            </div>
+                            <button class="text-gray-600 hover:text-primary transition-colors">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m9.032 4.026a9.001 9.001 0 01-7.432 0m9.032-4.026A9.001 9.001 0 0112 3c-4.474 0-8.268 3.12-9.032 7.326m0 0A9.001 9.001 0 0012 21c4.474 0 8.268-3.12 9.032-7.326"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="lg:col-span-1">
+                    <!-- Testimonials -->
+                    <div class="neumorphic bg-white rounded-2xl p-6 mb-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Member Testimonials</h3>
+                        <div id="testimonialsContainer" class="space-y-4">
+                            <!-- Testimonials will be loaded here -->
+                        </div>
+                    </div>
+
+                    <!-- Instagram CTA -->
+                    <div class="neumorphic bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl p-6 text-white">
+                        <h3 class="text-xl font-bold mb-2">Follow Us on Instagram</h3>
+                        <p class="text-white/90 mb-4">Daily tips, recipes, and community highlights</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex -space-x-2">
+                                <img src="https://picsum.photos/seed/ig1/40/40.jpg" alt="Follower" class="w-10 h-10 rounded-full border-2 border-white">
+                                <img src="https://picsum.photos/seed/ig2/40/40.jpg" alt="Follower" class="w-10 h-10 rounded-full border-2 border-white">
+                                <img src="https://picsum.photos/seed/ig3/40/40.jpg" alt="Follower" class="w-10 h-10 rounded-full border-2 border-white">
+                                <img src="https://picsum.photos/seed/ig4/40/40.jpg" alt="Follower" class="w-10 h-10 rounded-full border-2 border-white">
+                                <div class="w-10 h-10 rounded-full border-2 border-white bg-white/20 flex items-center justify-center">
+                                    <span class="text-xs font-bold">+5K</span>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="w-full bg-white text-purple-500 py-3 rounded-xl font-semibold hover:bg-gray-100 transition-colors">
+                            @nutriguide.id
+                        </button>
+                    </div>
+
+                    <!-- Upcoming Events -->
+                    <div class="neumorphic bg-white rounded-2xl p-6 mt-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Upcoming Events</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                                    <span class="text-primary font-bold">15</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Live Q&A with Nutritionist</h4>
+                                    <p class="text-sm text-gray-600">Dec 15, 7:00 PM</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                                    <span class="text-primary font-bold">22</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Virtual 5K Run</h4>
+                                    <p class="text-sm text-gray-600">Dec 22, All Day</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+    <script src="wo.js"></script>
+</body>
+</html>

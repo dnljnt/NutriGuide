@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set Your Goal - NutriGuide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#619FA3',
+                        'primary-light': '#8AB5B8',
+                        'primary-dark': '#4A8A8E',
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-in-out',
+                        'slide-up': 'slideUp 0.6s ease-out',
+                        'pulse-soft': 'pulseSoft 2s infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                        pulseSoft: {
+                            '0%, 100%': { transform: 'scale(1)' },
+                            '50%': { transform: 'scale(1.05)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .neumorphic {
+            box-shadow: 20px 20px 60px #d1d1d1, -20px -20px 60px #ffffff;
+        }
+        .neumorphic-inset {
+            box-shadow: inset 20px 20px 60px #d1d1d1, inset -20px -20px 60px #ffffff;
+        }
+        .gradient-primary {
+            background: linear-gradient(135deg, #619FA3 0%, #8AB5B8 100%);
+        }
+    </style>
+</head>
+<body class="bg-white font-sans">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/90 backdrop-blur-md z-50 shadow-sm">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+                        <span class="text-white font-bold text-sm">N</span>
+                    </div>
+                    <span class="font-semibold text-lg text-gray-800">NutriGuide</span>
+                </div>
+                <button onclick="window.location.href='index.html'" class="text-gray-600 hover:text-primary transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="min-h-screen pt-20 px-4 bg-gray-50">
+        <div class="container mx-auto max-w-6xl py-12">
+            <!-- Step Indicator -->
+            <div class="text-center mb-8">
+                <div class="inline-flex items-center space-x-2 bg-white rounded-full px-6 py-3 shadow-sm">
+                    <span class="text-primary font-medium">Step 2 of 3</span>
+                    <div class="flex space-x-1">
+                        <div class="w-8 h-2 bg-primary rounded-full"></div>
+                        <div class="w-8 h-2 bg-primary rounded-full"></div>
+                        <div class="w-8 h-2 bg-gray-300 rounded-full"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Title -->
+            <div class="text-center mb-12">
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Set Your Goal</h1>
+                <!-- BMI Info -->
+<div id="bmiInfo" class="mb-6 text-center p-4 bg-gray-100 rounded-xl hidden"></div>
+
+                <p class="text-xl text-gray-600">Choose your health objective and we'll create your personalized plan</p>
+            </div>
+
+            <!-- Goal Selection Cards -->
+            <div class="grid md:grid-cols-3 gap-8 mb-12">
+                <div class="goal-card neumorphic p-8 rounded-2xl cursor-pointer hover:transform hover:scale-105 transition-all duration-300" data-goal="cutting">
+                    <div class="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-10 h-10 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4 text-center">Cutting</h3>
+                    <p class="text-gray-600 text-center mb-4">Lose weight safely while maintaining muscle mass. Perfect for achieving a leaner physique.</p>
+                    <ul class="text-sm text-gray-600 space-y-2">
+                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Calorie deficit</li>
+                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> High protein</li>
+                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Fat burning focus</li>
+                    </ul>
+                </div>
+
+                <div class="goal-card neumorphic p-8 rounded-2xl cursor-pointer hover:transform hover:scale-105 transition-all duration-300" data-goal="bulking">
+                    <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-10 h-10 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4 text-center">Bulking</h3>
+                    <p class="text-gray-600 text-center mb-4">Build muscle and strength with controlled weight gain. Ideal for fitness enthusiasts.</p>
+                    <ul class="text-sm text-gray-600 space-y-2">
+                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Calorie surplus</li>
+                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Muscle building</li>
+                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Strength training</li>
+                    </ul>
+                </div>
+
+                <div class="goal-card neumorphic p-8 rounded-2xl cursor-pointer hover:transform hover:scale-105 transition-all duration-300" data-goal="maintenance">
+                    <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-10 h-10 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4 text-center">Maintenance</h3>
+                    <p class="text-gray-600 text-center mb-4">Maintain your current weight while improving overall health and fitness.</p>
+                    <ul class="text-sm text-gray-600 space-y-2">
+                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Balanced calories</li>
+                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Health focus</li>
+                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Sustainable lifestyle</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Goal Results -->
+            <div id="goalResults" class="hidden">
+                <div class="neumorphic bg-white rounded-3xl p-8 max-w-4xl mx-auto">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Your Personalized Plan</h2>
+                    
+                    <div class="grid md:grid-cols-2 gap-8 mb-8">
+                        <!-- Daily Calories -->
+                        <div class="text-center p-6 bg-primary/10 rounded-2xl">
+                            <div class="text-4xl font-bold text-primary mb-2">
+                                <span id="dailyCalories">0</span>
+                            </div>
+                            <div class="text-gray-600">Daily Calories</div>
+                        </div>
+
+                        <!-- Macros Chart -->
+                        <div class="p-6 bg-gray-50 rounded-2xl">
+                            <canvas id="macroChart" width="200" height="200"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Macro Breakdown -->
+                    <div class="grid grid-cols-3 gap-4 mb-8">
+                        <div class="text-center p-4 bg-blue-50 rounded-xl">
+                            <div class="text-2xl font-bold text-blue-600">
+                                <span id="proteinGrams">0</span>g
+                            </div>
+                            <div class="text-sm text-gray-600">Protein</div>
+                        </div>
+                        <div class="text-center p-4 bg-green-50 rounded-xl">
+                            <div class="text-2xl font-bold text-green-600">
+                                <span id="carbsGrams">0</span>g
+                            </div>
+                            <div class="text-sm text-gray-600">Carbs</div>
+                        </div>
+                        <div class="text-center p-4 bg-yellow-50 rounded-xl">
+                            <div class="text-2xl font-bold text-yellow-600">
+                                <span id="fatGrams">0</span>g
+                            </div>
+                            <div class="text-sm text-gray-600">Fat</div>
+                        </div>
+                    </div>
+
+                    <!-- Gym Experience Question -->
+                    <div class="mb-8">
+                        <label class="flex items-center space-x-3 p-4 bg-gray-50 rounded-xl cursor-pointer hover:bg-gray-100 transition-colors">
+                            <input type="checkbox" id="gymExperience" class="w-5 h-5 text-primary rounded focus:ring-primary">
+                            <span class="text-gray-700">Have you ever been to the gym?</span>
+                        </label>
+                    </div>
+
+                    <!-- Protein Recommendation -->
+                    <div id="proteinRecommendation" class="hidden mb-8 p-6 bg-yellow-50 border-2 border-yellow-200 rounded-xl">
+                        <div class="flex items-start space-x-3">
+                            <div class="w-8 h-8 bg-yellow-500 rounded-full flex items-center justify-center flex-shrink-0">
+                                <span class="text-white text-sm">!</span>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-2">Protein Supplement Recommendation</h4>
+                                <p class="text-gray-600">Since you have gym experience, consider adding whey protein to meet your daily protein targets. It helps with muscle recovery and growth, especially after workouts.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Continue Button -->
+                    <div id="continueToMeals" class="hidden">
+                        <button onclick="window.location.href='meals.html'" class="w-full bg-primary text-white py-4 rounded-xl font-semibold hover:bg-primary-dark transition-all transform hover:scale-105">
+                            Continue to Meal Plan →
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+    <script src="goals.js"></script>
+</body>
+</html>

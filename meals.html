@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Meal Planner - NutriGuide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#619FA3',
+                        'primary-light': '#8AB5B8',
+                        'primary-dark': '#4A8A8E',
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-in-out',
+                        'slide-up': 'slideUp 0.6s ease-out',
+                        'pulse-soft': 'pulseSoft 2s infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                        pulseSoft: {
+                            '0%, 100%': { transform: 'scale(1)' },
+                            '50%': { transform: 'scale(1.05)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .neumorphic {
+            box-shadow: 20px 20px 60px #d1d1d1, -20px -20px 60px #ffffff;
+        }
+        .neumorphic-inset {
+            box-shadow: inset 20px 20px 60px #d1d1d1, inset -20px -20px 60px #ffffff;
+        }
+        .gradient-primary {
+            background: linear-gradient(135deg, #619FA3 0%, #8AB5B8 100%);
+        }
+    </style>
+</head>
+<body class="bg-white font-sans">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/90 backdrop-blur-md z-50 shadow-sm">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+                        <span class="text-white font-bold text-sm">N</span>
+                    </div>
+                    <span class="font-semibold text-lg text-gray-800">NutriGuide</span>
+                </div>
+                <button onclick="window.location.href='index.html'" class="text-gray-600 hover:text-primary transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="min-h-screen pt-20 px-4">
+        <div class="container mx-auto max-w-7xl py-12">
+            <!-- Title -->
+            <div class="text-center mb-12">
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Eat Smart with Local Taste</h1>
+                <p class="text-xl text-gray-600">Discover healthy Indonesian meals that fit your goals</p>
+            </div>
+
+            <div class="grid lg:grid-cols-4 gap-8">
+                <!-- Sidebar Summary -->
+                <div class="lg:col-span-1">
+                    <div class="neumorphic bg-white rounded-2xl p-6 sticky top-24">
+                        <h3 class="text-xl font-bold text-gray-800 mb-6">Daily Targets</h3>
+                        
+                        <div class="space-y-4 mb-6">
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span class="text-gray-600">Calories</span>
+                                    <span class="font-semibold"><span id="totalCalories">2050</span> kcal</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-primary h-2 rounded-full" style="width: 75%"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span class="text-gray-600">Protein</span>
+                                    <span class="font-semibold"><span id="totalProtein">150</span>g</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-blue-500 h-2 rounded-full" style="width: 80%"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span class="text-gray-600">Carbs</span>
+                                    <span class="font-semibold"><span id="totalCarbs">200</span>g</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-green-500 h-2 rounded-full" style="width: 70%"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span class="text-gray-600">Fat</span>
+                                    <span class="font-semibold"><span id="totalFat">65</span>g</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-yellow-500 h-2 rounded-full" style="width: 60%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border-t pt-4">
+                            <div class="text-sm text-gray-600 mb-2">Consumed vs Required</div>
+                            <div class="text-2xl font-bold text-primary">1,537 / 2,050 kcal</div>
+                            <div class="text-sm text-gray-500">513 kcal remaining</div>
+                        </div>
+
+                        <div class="mt-6 space-y-2">
+                            <button onclick="window.location.href='workouts.html'" class="w-full bg-primary text-white py-3 rounded-xl font-semibold hover:bg-primary-dark transition-colors">
+                                View Workouts
+                            </button>
+                            <button onclick="window.location.href='dashboard.html'" class="w-full bg-gray-100 text-gray-700 py-3 rounded-xl font-semibold hover:bg-gray-200 transition-colors">
+                                Dashboard
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Content -->
+                <div class="lg:col-span-3">
+                    <!-- Filter Bar -->
+                    <div class="mb-8">
+                        <div class="flex flex-wrap gap-2">
+                            <button class="meal-filter px-6 py-3 bg-primary text-white rounded-full font-medium transition-colors" data-category="all">
+                                All Meals
+                            </button>
+                            <button class="meal-filter px-6 py-3 bg-gray-200 text-gray-700 rounded-full font-medium hover:bg-gray-300 transition-colors" data-category="breakfast">
+                                Breakfast
+                            </button>
+                            <button class="meal-filter px-6 py-3 bg-gray-200 text-gray-700 rounded-full font-medium hover:bg-gray-300 transition-colors" data-category="lunch">
+                                Lunch
+                            </button>
+                            <button class="meal-filter px-6 py-3 bg-gray-200 text-gray-700 rounded-full font-medium hover:bg-gray-300 transition-colors" data-category="dinner">
+                                Dinner
+                            </button>
+                            <button class="meal-filter px-6 py-3 bg-gray-200 text-gray-700 rounded-full font-medium hover:bg-gray-300 transition-colors" data-category="snacks">
+                                Snacks
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Meals Grid -->
+                    <div id="mealsContainer" class="grid md:grid-cols-2 gap-6">
+                        <!-- Meals will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Recipe Modal -->
+    <div id="recipeModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div id="recipeContent" class="p-8">
+                <!-- Recipe content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="meals.js"></script>
+</body>
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Hub - NutriGuide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#619FA3',
+                        'primary-light': '#8AB5B8',
+                        'primary-dark': '#4A8A8E',
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-in-out',
+                        'slide-up': 'slideUp 0.6s ease-out',
+                        'pulse-soft': 'pulseSoft 2s infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                        pulseSoft: {
+                            '0%, 100%': { transform: 'scale(1)' },
+                            '50%': { transform: 'scale(1.05)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .neumorphic {
+            box-shadow: 20px 20px 60px #d1d1d1, -20px -20px 60px #ffffff;
+        }
+        .neumorphic-inset {
+            box-shadow: inset 20px 20px 60px #d1d1d1, inset -20px -20px 60px #ffffff;
+        }
+        .gradient-primary {
+            background: linear-gradient(135deg, #619FA3 0%, #8AB5B8 100%);
+        }
+    </style>
+</head>
+<body class="bg-white font-sans">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/90 backdrop-blur-md z-50 shadow-sm">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+                        <span class="text-white font-bold text-sm">N</span>
+                    </div>
+                    <span class="font-semibold text-lg text-gray-800">NutriGuide</span>
+                </div>
+                <button onclick="window.location.href='index.html'" class="text-gray-600 hover:text-primary transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="min-h-screen pt-20 px-4">
+        <div class="container mx-auto max-w-7xl py-12">
+            <!-- Title -->
+            <div class="text-center mb-12">
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Learn, Explore, and Grow</h1>
+                <p class="text-xl text-gray-600">Discover expert insights on nutrition, exercise, and wellness</p>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="max-w-2xl mx-auto mb-12">
+                <div class="neumorphic p-2 rounded-2xl">
+                    <div class="flex items-center">
+                        <svg class="w-6 h-6 text-gray-400 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                        <input 
+                            type="text" 
+                            id="searchInput"
+                            placeholder="Search health topics..." 
+                            class="flex-1 px-4 py-3 bg-transparent outline-none text-gray-700"
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filter Chips -->
+            <div class="flex flex-wrap justify-center gap-3 mb-12">
+                <button class="px-6 py-2 bg-primary text-white rounded-full font-medium transition-colors">
+                    All Topics
+                </button>
+                <button class="px-6 py-2 bg-gray-200 text-gray-700 rounded-full font-medium hover:bg-gray-300 transition-colors">
+                    Nutrition
+                </button>
+                <button class="px-6 py-2 bg-gray-200 text-gray-700 rounded-full font-medium hover:bg-gray-300 transition-colors">
+                    Workout
+                </button>
+                <button class="px-6 py-2 bg-gray-200 text-gray-700 rounded-full font-medium hover:bg-gray-300 transition-colors">
+                    Mind
+                </button>
+                <button class="px-6 py-2 bg-gray-200 text-gray-700 rounded-full font-medium hover:bg-gray-300 transition-colors">
+                    Lifestyle
+                </button>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Main Content -->
+                <div class="lg:col-span-2">
+                    <!-- Articles Grid -->
+                    <div id="articlesContainer" class="grid md:grid-cols-2 gap-6">
+                        <!-- Articles will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="lg:col-span-1">
+                    <!-- Popular This Week -->
+                    <div class="neumorphic bg-white rounded-2xl p-6 mb-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Popular This Week</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start space-x-3">
+                                <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <span class="text-primary font-bold">1</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-1">10 High-Protein Indonesian Foods</h4>
+                                    <p class="text-sm text-gray-600">Discover local protein sources for your diet</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <span class="text-primary font-bold">2</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-1">Morning Routine for Weight Loss</h4>
+                                    <p class="text-sm text-gray-600">Start your day right with these habits</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <span class="text-primary font-bold">3</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-1">Understanding Body Composition</h4>
+                                    <p class="text-sm text-gray-600">Beyond the scale: what really matters</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Featured Video -->
+                    <div class="neumorphic bg-white rounded-2xl p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Featured Video</h3>
+                        <div class="relative rounded-xl overflow-hidden mb-4">
+                            <img src="https://picsum.photos/seed/workoutvideo/400/225.jpg" alt="Workout Video" class="w-full">
+                            <div class="absolute inset-0 bg-black/30 flex items-center justify-center">
+                                <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center">
+                                    <svg class="w-8 h-8 text-primary ml-1" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M8 5v14l11-7z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <h4 class="font-semibold text-gray-800 mb-2">15-Minute Home Workout</h4>
+                        <p class="text-sm text-gray-600 mb-3">No equipment needed for this effective routine</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
+                            </svg>
+                            <span>12.5K views</span>
+                            <span class="mx-2">•</span>
+                            <span>2 days ago</span>
+                        </div>
+                    </div>
+
+                    <!-- Newsletter -->
+                    <div class="neumorphic bg-gradient-to-r from-primary to-primary-light rounded-2xl p-6 mt-6 text-white">
+                        <h3 class="text-xl font-bold mb-2">Weekly Health Tips</h3>
+                        <p class="text-white/90 mb-4">Get expert advice delivered to your inbox</p>
+                        <div class="flex">
+                            <input 
+                                type="email" 
+                                placeholder="Your email" 
+                                class="flex-1 px-4 py-2 rounded-l-lg text-gray-800 outline-none"
+                            >
+                            <button class="bg-white text-primary px-4 py-2 rounded-r-lg font-semibold hover:bg-gray-100 transition-colors">
+                                Subscribe
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

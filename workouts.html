@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workout Planner - NutriGuide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#619FA3',
+                        'primary-light': '#8AB5B8',
+                        'primary-dark': '#4A8A8E',
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-in-out',
+                        'slide-up': 'slideUp 0.6s ease-out',
+                        'pulse-soft': 'pulseSoft 2s infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                        pulseSoft: {
+                            '0%, 100%': { transform: 'scale(1)' },
+                            '50%': { transform: 'scale(1.05)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .neumorphic {
+            box-shadow: 20px 20px 60px #d1d1d1, -20px -20px 60px #ffffff;
+        }
+        .neumorphic-inset {
+            box-shadow: inset 20px 20px 60px #d1d1d1, inset -20px -20px 60px #ffffff;
+        }
+        .gradient-primary {
+            background: linear-gradient(135deg, #619FA3 0%, #8AB5B8 100%);
+        }
+    </style>
+</head>
+<body class="bg-white font-sans">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/90 backdrop-blur-md z-50 shadow-sm">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+                        <span class="text-white font-bold text-sm">N</span>
+                    </div>
+                    <span class="font-semibold text-lg text-gray-800">NutriGuide</span>
+                </div>
+                <button onclick="window.location.href='index.html'" class="text-gray-600 hover:text-primary transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="min-h-screen pt-20 px-4 bg-gray-50">
+        <div class="container mx-auto max-w-7xl py-12">
+            <!-- Title -->
+            <div class="text-center mb-12">
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Train Smarter, Not Harder</h1>
+                <p class="text-xl text-gray-600">Personalized workout plans that adapt to your goals and experience</p>
+            </div>
+
+            <!-- Weekly Progress -->
+            <div class="neumorphic bg-white rounded-2xl p-6 mb-8">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-800">Weekly Progress</h3>
+                        <p id="workoutProgress" class="text-3xl font-bold text-primary">0/5 workouts completed</p>
+                    </div>
+                    <div class="flex space-x-2">
+                        <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center">
+                            <span class="text-white font-bold">✓</span>
+                        </div>
+                        <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center">
+                            <span class="text-white font-bold">✓</span>
+                        </div>
+                        <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center">
+                            <span class="text-white font-bold">✓</span>
+                        </div>
+                        <div class="w-12 h-12 bg-gray-300 rounded-full flex items-center justify-center">
+                            <span class="text-white font-bold">4</span>
+                        </div>
+                        <div class="w-12 h-12 bg-gray-300 rounded-full flex items-center justify-center">
+                            <span class="text-white font-bold">5</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filter Bar -->
+            <div class="mb-8">
+                <div class="flex flex-wrap gap-2">
+                    <button class="workout-filter px-6 py-3 bg-primary text-white rounded-full font-medium transition-colors" data-filter="all">
+                        All Workouts
+                    </button>
+                    <button class="workout-filter px-6 py-3 bg-gray-200 text-gray-700 rounded-full font-medium hover:bg-gray-300 transition-colors" data-filter="cutting">
+                        Cutting
+                    </button>
+                    <button class="workout-filter px-6 py-3 bg-gray-200 text-gray-700 rounded-full font-medium hover:bg-gray-300 transition-colors" data-filter="bulking">
+                        Bulking
+                    </button>
+                    <button class="workout-filter px-6 py-3 bg-gray-200 text-gray-700 rounded-full font-medium hover:bg-gray-300 transition-colors" data-filter="beginner">
+                        Beginner
+                    </button>
+                    <button class="workout-filter px-6 py-3 bg-gray-200 text-gray-700 rounded-full font-medium hover:bg-gray-300 transition-colors" data-filter="intermediate">
+                        Intermediate
+                    </button>
+                    <button class="workout-filter px-6 py-3 bg-gray-200 text-gray-700 rounded-full font-medium hover:bg-gray-300 transition-colors" data-filter="home">
+                        Home
+                    </button>
+                    <button class="workout-filter px-6 py-3 bg-gray-200 text-gray-700 rounded-full font-medium hover:bg-gray-300 transition-colors" data-filter="gym">
+                        Gym
+                    </button>
+                </div>
+            </div>
+
+            <!-- Workouts Grid -->
+            <div id="workoutsContainer" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Workouts will be loaded here -->
+            </div>
+
+            <!-- Motivational Section -->
+            <div class="mt-16 text-center">
+                <div class="neumorphic bg-gradient-to-r from-primary to-primary-light rounded-3xl p-12 text-white">
+                    <h2 class="text-3xl font-bold mb-4">Stay Consistent, See Results</h2>
+                    <p class="text-xl mb-8 text-white/90">Every workout counts. You're 3 workouts closer to your goal!</p>
+                    <div class="flex justify-center space-x-4">
+                        <div class="text-center">
+                            <div class="text-4xl font-bold">12</div>
+                            <div class="text-white/80">Workouts Done</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-4xl font-bold">2,850</div>
+                            <div class="text-white/80">Calories Burned</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-4xl font-bold">5</div>
+                            <div class="text-white/80">Day Streak</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Workout Modal -->
+    <div id="workoutModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div id="workoutContent" class="p-8">
+                <!-- Workout content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="workout.js"></script>
+</body>
+</html>
